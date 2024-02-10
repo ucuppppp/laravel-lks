@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\SocietyResource;
-use App\Models\Society;
 use App\Models\User;
+use App\Models\Society;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\SocietyResource;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -14,12 +15,19 @@ class AuthController extends Controller
 
     public function login(Request $request){
 
-        $society = Society::where('id_card_number', $request->id_card_number)->get();
 
-        $request->validate([
-            "id_card_number" => "required",
-            "password" => "required"
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //         "id_card_number" => "required",
+        //         "password" => "required",
+        //     ]);
+
+        // if ($validator->fails()) {
+        //     return response()->json([
+        //             "message" => $validator->errors(),
+        //         ], 422);
+        // }
+
+        $society = Society::where('id_card_number', $request->id_card_number)->get();
 
         if(\sizeof($society) == 0){
             return response()->json([

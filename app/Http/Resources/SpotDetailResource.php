@@ -19,7 +19,8 @@ class SpotDetailResource extends JsonResource
             "name" => $this->name,
             "address" => $this->address,
             "serve" => $this->serve,
-            "capacity" => $this->capacity
+            "capacity" => $this->capacity,
+            "regional" => $this->whenLoaded('regional')
         ];
     }
 }

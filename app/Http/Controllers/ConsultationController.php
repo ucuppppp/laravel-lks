@@ -77,7 +77,7 @@ class ConsultationController extends Controller
         }
 
         return response()->json([
-            "consultation" => new ConsultationResource($consultation)
+            "consultation" => ConsultationResource::collection($consultation)
         ]);
 
     }
